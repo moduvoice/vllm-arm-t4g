@@ -1,0 +1,13 @@
+diff --git a/setup.py b/setup.py
+index 7c226a7..a8f436a 100644
+--- a/setup.py
++++ b/setup.py
+@@ -1002,7 +1002,7 @@ if _is_cuda():
+         CUDA_HOME and get_nvcc_cuda_version() >= Version("12.3")
+     ):
+         # FA3 requires CUDA 12.3 or later
+-        ext_modules.append(CMakeExtension(name="vllm.vllm_flash_attn._vllm_fa3_C"))
++        pass  # DISABLED FOR sm_75: FA3 Hopper-only
+     # FA4 CuteDSL - Python-only component for FA4's cute DSL support
+     # Optional since this doesn't produce a .so file, just copies Python files
+     ext_modules.append(
