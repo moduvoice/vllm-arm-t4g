@@ -18,7 +18,7 @@ x86_64 우선이고, 최신 vLLM은 빠른 경로에 점점 **sm_80+(Ampere)** �
 
 ```bash
 # arm64 g5g 박스(Ubuntu 24.04)에서
-git clone https://github.com/<you>/vllm-arm-t4g && cd vllm-arm-t4g
+git clone https://github.com/moduvoice/vllm-arm-t4g && cd vllm-arm-t4g
 ./build.sh          # vLLM v0.20.0 클론 → 패치 적용 → sm_75로 빌드
 # ... 또는 컨테이너 빌드:
 docker build -t vllm-arm-t4g .
@@ -45,6 +45,10 @@ docker build -t vllm-arm-t4g .
 | 컴파일러 | **g++-12** (`CC=CXX=/usr/bin/g++-12`) |
 | vLLM | **v0.20.0** (`88d34c6`) + FA3 패치 |
 | 빌드 아키 플래그 | `TORCH_CUDA_ARCH_LIST=7.5` |
+
+> 공식 PyTorch aarch64 CUDA 휠에는 **`sm_75` 커널이 없어** T4G에서 `no kernel image is available`로 실패합니다.
+> 아래 AWS 빌드에는 `sm_75`가 들어 있습니다. 전체 버전·검사 결과·pip 인덱스:
+> **[pytorch-arm64-t4g](https://github.com/moduvoice/pytorch-arm64-t4g)**.
 
 **arm64 CUDA PyTorch 휠** (AWS 제공, `cu130`, cp313):
 

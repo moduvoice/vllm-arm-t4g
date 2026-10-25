@@ -18,7 +18,7 @@ that works, plus the runtime settings Turing actually needs.
 
 ```bash
 # on an arm64 g5g box (Ubuntu 24.04)
-git clone https://github.com/<you>/vllm-arm-t4g && cd vllm-arm-t4g
+git clone https://github.com/moduvoice/vllm-arm-t4g && cd vllm-arm-t4g
 ./build.sh          # clones vLLM v0.20.0, applies the patch, builds for sm_75
 # ... or build the container:
 docker build -t vllm-arm-t4g .
@@ -45,6 +45,10 @@ docker build -t vllm-arm-t4g .
 | Compiler | **g++-12** (`CC=CXX=/usr/bin/g++-12`) |
 | vLLM | **v0.20.0** (`88d34c6`) + the FA3 patch |
 | Build arch flag | `TORCH_CUDA_ARCH_LIST=7.5` |
+
+> The official PyTorch aarch64 CUDA wheels have **no `sm_75` kernels** and fail on the T4G with
+> `no kernel image is available`. These AWS builds do include `sm_75`. All versions, checks and a pip
+> index: **[pytorch-arm64-t4g](https://github.com/moduvoice/pytorch-arm64-t4g)**.
 
 **arm64 CUDA PyTorch wheels** (AWS-published, `cu130`, cp313):
 
